@@ -109,20 +109,23 @@ set statusline=%f%m%r%h%w\ %y\ enc:%{&enc}\ ff:%{&ff}\ fenc:%{&fenc}%=(ch:%3b\ h
 " Configure bundles for use of Vundle ======
 filetype off                  " required!
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
 " let Vundle manage Vundle
 " required! 
-Bundle 'gmarik/vundle'
+Plugin 'gmarik/vundle'
 
-Bundle 'mileszs/ack.vim'
-Bundle 'Lokaltog/vim-powerline'
-Bundle 'wincent/Command-T'
-Bundle 'LustyExplorer'
-Bundle 'taglist.vim'
-Bundle 'tpope/vim-surround'
-Bundle 'AutoTag'
+Plugin 'mileszs/ack.vim'
+Plugin 'Lokaltog/vim-powerline'
+Plugin 'wincent/Command-T'
+Plugin 'LustyExplorer'
+Plugin 'taglist.vim'
+Plugin 'tpope/vim-surround'
+Plugin 'AutoTag'
+Plugin 'tomasr/molokai'
+
+call vundle#end()
 
 filetype plugin indent on     " required!
 "
@@ -183,8 +186,6 @@ nmap <Leader>a :tab split<CR>:Ack ""<Left>
 
 " Immediately search for the word under the cursor in a new tab
 nmap <Leader>A :tab split<CR>:Ack <C-r><C-w><CR>
-
-syntax on
 
 " ========= TagList =========
 "   :tag getUser => Jump to getUser method
