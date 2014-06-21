@@ -72,8 +72,6 @@ if has("autocmd")
 
 else
 
-  set autoindent		" always set autoindenting on
-
 endif " has("autocmd")
 
 " Convenient command to see the difference between the current buffer and the
@@ -85,16 +83,17 @@ if !exists(":DiffOrig")
 endif
 
 
-" Added by Daniel Abramov
+" ========= Added by Daniel Abramov ========= 
 
 set tabstop=4
 set shiftwidth=4
 set expandtab
 set number
-
 set mouse=a
 set bg=dark
 set t_Co=256
+
+map <F3> :nohl<CR>
 
 " ====================================================================================================================================================
 " Added from ru.wikibooks.org/wiki/Vim
@@ -106,7 +105,7 @@ set statusline=%f%m%r%h%w\ %y\ enc:%{&enc}\ ff:%{&ff}\ fenc:%{&fenc}%=(ch:%3b\ h
 " syntax on
 " filetype plugin indent on
 
-" Configure bundles for use of Vundle ======
+" ========= Configure bundles for use of Vundle ========= 
 filetype off                  " required!
 
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -116,14 +115,18 @@ call vundle#begin()
 " required! 
 Plugin 'gmarik/vundle'
 
-Plugin 'mileszs/ack.vim'
-Plugin 'Lokaltog/vim-powerline'
-Plugin 'wincent/Command-T'
-Plugin 'LustyExplorer'
-Plugin 'taglist.vim'
-Plugin 'tpope/vim-surround'
-Plugin 'AutoTag'
-Plugin 'tomasr/molokai'
+Plugin 'mileszs/ack.vim'            " Allows to search grep-like (Find All References)
+Plugin 'Lokaltog/vim-powerline'     " Turns on vim powerline which activates status line at the bottom
+Plugin 'wincent/Command-T'          " Fuzzy-mathing file navigator inside the project
+Plugin 'LustyExplorer'              " Fuzzy-mathing buffer navigator (quick search inside opened buffers)
+Plugin 'taglist.vim'                " One of the most vim popular plugins, provides taglist window to show all functions etc. using ctags
+Plugin 'tpope/vim-surround'         " Surrounds some block of code with brackets etc.
+Plugin 'AutoTag'                    " Updates tags files whenever file gets saved
+Plugin 'tomasr/molokai'             " TextMate like and Sublime Text like dark colorscheme for vim
+Plugin 'Lokaltog/vim-easymotion'    " Fast navigate among the code on your visible page
+
+Plugin 'kien/ctrlp.vim'             " Get this if Command-T does not work properly
+Plugin 'Valloric/YouCompleteMe'     " C/C++ and other language code-completion engine
 
 call vundle#end()
 
@@ -138,16 +141,10 @@ filetype plugin indent on     " required!
 " see :h vundle for more details or wiki for FAQ
 " NOTE: comments after Bundle commands are not allowed.
 " ===========================================
-
-
+"
 colorscheme molokai
 let g:molokai_original = 1
 let g:rehash256 = 1
-
-" Rebind <Leader> key
-" let mapleader=","
-
-nnoremap <Leader>s :w<CR>
 
 " Bind Ctrl+<movement> keys to move around the windows, instead of using Ctrl+w+<movement>
 map <c-j> <c-w>j
@@ -155,13 +152,18 @@ map <c-k> <c-w>k
 map <c-l> <c-w>l
 map <c-h> <c-w>h
 
-" Easier moving between tabs
-map <Leader>n <esc>:tabprevious<CR>
-map <Leader>m <esc>:tabnext<CR>
-
 " Easies moving of code blocks
 vnoremap < <gv
 vnoremap < >gv
+
+
+" ========= TagList =========
+"   :tag getUser => Jump to getUser method
+"   :tn (or tnext) => go to next search result
+"   :tp (or tprev) => to to previous search result
+"   :ts (or tselect) => List the current tags
+"   => Go back to last tag location
+"   +Left click => Go to definition of a method
 
 " Some settings to vim-taglist
 let Tlist_winWidth=50
@@ -181,17 +183,29 @@ map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 
 " g C - ] - opens a quick dialog to select one between multiple definitions
 
+
+" ========= Ack Vim Configuration ========= 
 " Open a new tab and search for something
 nmap <Leader>a :tab split<CR>:Ack ""<Left>
 
 " Immediately search for the word under the cursor in a new tab
 nmap <Leader>A :tab split<CR>:Ack <C-r><C-w><CR>
 
-" ========= TagList =========
-"   :tag getUser => Jump to getUser method
-"   :tn (or tnext) => go to next search result
-"   :tp (or tprev) => to to previous search result
-"   :ts (or tselect) => List the current tags
-"   => Go back to last tag location
-"   +Left click => Go to definition of a method
 
+" ========= CtrlP options ========= 
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
+set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
+
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+
+
+" ========= EasyMotion options ========= 
+let g:EasyMotion_smartcase = 1
+map <Leader> <Plug>(easymotion-prefix)
+map  / <Plug>(easymotion-sn)
+omap / <Plug>(easymotion-tn)
+
+
+" ========= YouCompleteMe options ========= 
+let g:ycm_collect_identifiers_from_tags_files = 1
+let g:ycm_seed_identifiers_with_syntax = 1
