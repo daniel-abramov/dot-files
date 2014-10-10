@@ -94,6 +94,8 @@ set bg=dark
 set t_Co=256
 
 map <F3> :nohl<CR>
+imap <F3> <C-O>:nohl<CR>
+
 
 " ====================================================================================================================================================
 " Added from ru.wikibooks.org/wiki/Vim
@@ -124,9 +126,7 @@ Plugin 'tpope/vim-surround'         " Surrounds some block of code with brackets
 Plugin 'AutoTag'                    " Updates tags files whenever file gets saved
 Plugin 'tomasr/molokai'             " TextMate like and Sublime Text like dark colorscheme for vim
 Plugin 'Lokaltog/vim-easymotion'    " Fast navigate among the code on your visible page
-
-Plugin 'kien/ctrlp.vim'             " Get this if Command-T does not work properly
-Plugin 'Valloric/YouCompleteMe'     " C/C++ and other language code-completion engine
+Plugin 'godlygeek/tabular'          " Tabularize your code ;)
 
 call vundle#end()
 
@@ -207,5 +207,10 @@ omap / <Plug>(easymotion-tn)
 
 
 " ========= YouCompleteMe options ========= 
-let g:ycm_collect_identifiers_from_tags_files = 1
-let g:ycm_seed_identifiers_with_syntax = 1
+let g:ycm_collect_identifiers_from_tags_files=1
+let g:ycm_seed_identifiers_with_syntax=1
+let g:ycm_autoclose_preview_window_after_completion=1
+let g:ycm_autoclose_preview_window_after_insertion=1
+let g:ycm_enable_diagnostic_signs = 0
+
+set nowrap

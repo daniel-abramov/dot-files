@@ -117,3 +117,7 @@ case "$TERM" in
     'screen') TERM=screen-256color;;
     'Eterm') TERM=Eterm-256color;;
 esac
+
+export GIT_EDITOR=vim
+export VISUAL=vim
+export EDITOR=vim
