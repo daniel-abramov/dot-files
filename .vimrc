@@ -83,8 +83,7 @@ if !exists(":DiffOrig")
 endif
 
 
-" ========= Added by Daniel Abramov ========= 
-
+" ==================  Added by Daniel Abramov ================== 
 set tabstop=4
 set shiftwidth=4
 set expandtab
@@ -92,20 +91,18 @@ set number
 set mouse=a
 set bg=dark
 set t_Co=256
+set nowrap
 
 map <F3> :nohl<CR>
 imap <F3> <C-O>:nohl<CR>
 
+" Trailing spaces, tabs highlighting
+set list listchars=tab:>-,trail:~
+hi SpecialKey ctermfg=017 guifg=#00005f
 
-" ====================================================================================================================================================
 " Added from ru.wikibooks.org/wiki/Vim
 set laststatus=2
 set statusline=%f%m%r%h%w\ %y\ enc:%{&enc}\ ff:%{&ff}\ fenc:%{&fenc}%=(ch:%3b\ hex:%2B)\ col:%2c\ line:%2l/%L\ [%2p%%]
-
-" ========== Uncomment for enabling pathogen ========== 
-" execute pathogen#infect()
-" syntax on
-" filetype plugin indent on
 
 " ========= Configure bundles for use of Vundle ========= 
 filetype off                  " required!
@@ -192,7 +189,7 @@ nmap <Leader>a :tab split<CR>:Ack ""<Left>
 nmap <Leader>A :tab split<CR>:Ack <C-r><C-w><CR>
 
 
-" ========= CtrlP options ========= 
+" ========= CtrlP options (if installed) ========= 
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
 set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
 
@@ -202,15 +199,14 @@ let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 " ========= EasyMotion options ========= 
 let g:EasyMotion_smartcase = 1
 map <Leader> <Plug>(easymotion-prefix)
-map  / <Plug>(easymotion-sn)
-omap / <Plug>(easymotion-tn)
+map <Leader>/ <Plug>(easymotion-sn)
+omap <Leader>/ <Plug>(easymotion-tn)
 
 
-" ========= YouCompleteMe options ========= 
+" ========= YouCompleteMe options (if installed) ========= 
 let g:ycm_collect_identifiers_from_tags_files=1
 let g:ycm_seed_identifiers_with_syntax=1
 let g:ycm_autoclose_preview_window_after_completion=1
 let g:ycm_autoclose_preview_window_after_insertion=1
 let g:ycm_enable_diagnostic_signs = 0
 
-set nowrap
