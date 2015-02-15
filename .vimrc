@@ -115,7 +115,7 @@ call vundle#begin()
 Plugin 'gmarik/vundle'
 
 Plugin 'mileszs/ack.vim'            " Allows to search grep-like (Find All References)
-Plugin 'Lokaltog/vim-powerline'     " Turns on vim powerline which activates status line at the bottom
+Plugin 'bling/vim-airline'          " Vim status line
 Plugin 'wincent/Command-T'          " Fuzzy-mathing file navigator inside the project
 Plugin 'LustyExplorer'              " Fuzzy-mathing buffer navigator (quick search inside opened buffers)
 Plugin 'taglist.vim'                " One of the most vim popular plugins, provides taglist window to show all functions etc. using ctags
