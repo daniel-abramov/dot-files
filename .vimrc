@@ -210,3 +210,6 @@ let g:ycm_autoclose_preview_window_after_completion=1
 let g:ycm_autoclose_preview_window_after_insertion=1
 let g:ycm_enable_diagnostic_signs = 0
 
+" ========= Additional options =========
+" Uncomment the line below if you have problems with matching parenthesis highlight
+" hi MatchParen ctermbg=none ctermfg=red
