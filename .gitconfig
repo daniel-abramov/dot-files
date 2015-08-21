@@ -1,8 +1,10 @@
+[core]
+    editor = vim
 [color]
-	ui = auto
+    ui = auto
 [user]
-	name = Daniel Abramov
-	email = inetcrack2@gmail.com
+    name = Daniel Abramov
+    email = inetcrack2@gmail.com
 [alias]
-	lg = log --graph --pretty=format:'%Cgreen%h%Creset -%Creset %s%C(yellow)%d %Cblue(%aN, %cr)%Creset' --abbrev-commit --date=relative
-	heir = log --all --graph --decorate --oneline --simplify-by-decoration
+    lg = log --graph --pretty=format:'%Cgreen%h%Creset -%Creset %s%C(yellow)%d %Cblue(%aN, %cr)%Creset' --abbrev-commit --date=relative
+    heir = log --all --graph --decorate --oneline --simplify-by-decoration
