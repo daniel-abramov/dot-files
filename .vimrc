@@ -255,7 +255,7 @@ vnoremap < >gv
 
 " Some settings to vim-taglist
 let Tlist_winWidth=50
-map <F3> :TlistToggle<CR>
+map <F7> :TlistToggle<CR>
 
 " Building ctags for current directory
 map <F8> :!/usr/bin/ctags -R --c++-kinds=+p --fileds=+iaS --extra=+q .<CR>
@@ -344,7 +344,7 @@ if has("gui_macvim")
   let g:tagbar_ctags_bin = '/usr/local/bin/ctags'
 endif
 
-nnoremap <F4> :TagbarToggle<cr><c-w>=
+nnoremap <F6> :TagbarToggle<cr><c-w>=
 
 
 " ====================  Ack  ====================
