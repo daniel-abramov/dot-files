@@ -21,7 +21,7 @@ Plugin 'VundleVim/Vundle.vim' " Let Vundle manage Vundle
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'Valloric/ListToggle'
 Plugin 'Valloric/python-indent'
-Plugin 'Valloric/vim-valloric-colorscheme'
+Plugin 'application-developer-da/vim-valloric-colorscheme'
 Plugin 'bling/vim-airline'
 Plugin 'danro/rename.vim'
 Plugin 'derekwyatt/vim-fswitch'
@@ -61,7 +61,6 @@ set noshowmode          " don't show how mode in status bar, we already have air
 set showcmd             " show typed command in status bar
 set ruler               " show cursor position in status bar
 set title               " show filename in titlebar
-set undofile            " stores undo state even when files are closed (in undodir)
 set cursorline          " highlights the current line
 set winaltkeys=no       " turns off the Alt key bindings to the gui menu
 set laststatus=2        " the statusline is now always shown
