@@ -237,7 +237,7 @@ noremap <c-h> <c-w>h
 
 " Easies moving of code blocks
 vnoremap < <gv
-vnoremap < >gv
+vnoremap > >gv
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
