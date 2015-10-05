@@ -18,28 +18,35 @@ call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim' " Let Vundle manage Vundle
 
-Plugin 'Lokaltog/vim-easymotion'
-Plugin 'Valloric/ListToggle'
-Plugin 'Valloric/python-indent'
-Plugin 'application-developer-da/vim-valloric-colorscheme'
+" Colorschemes
+Plugin 'tomasr/molokai'
+Plugin 'morhetz/gruvbox'
+
+" Appearance, code look and indentations [auxiliary plugins]
 Plugin 'bling/vim-airline'
-Plugin 'danro/rename.vim'
-Plugin 'derekwyatt/vim-fswitch'
-Plugin 'godlygeek/tabular'
-Plugin 'majutsushi/tagbar'
-Plugin 'mileszs/ack.vim'
 Plugin 'octol/vim-cpp-enhanced-highlight'
-Plugin 'python.vim'
-Plugin 'tpope/vim-git'
 Plugin 'tpope/vim-markdown'
-Plugin 'tpope/vim-surround'
-Plugin 'vim-scripts/AutoTag'
-Plugin 'vim-scripts/L9'
-Plugin 'vim-scripts/YankRing.vim'
+Plugin 'tpope/vim-git'
+Plugin 'Valloric/python-indent'
 Plugin 'vim-scripts/matchit.zip'
 Plugin 'vim-scripts/python_match.vim'
+Plugin 'python.vim'
+
+Plugin 'Valloric/ListToggle'
+Plugin 'danro/rename.vim'
+Plugin 'derekwyatt/vim-fswitch'
+Plugin 'majutsushi/tagbar'
+Plugin 'mileszs/ack.vim'
+Plugin 'vim-scripts/AutoTag'
+Plugin 'vim-scripts/YankRing.vim'
 Plugin 'vim-scripts/taglist.vim'
-Plugin 'wincent/Command-T'
+Plugin 'wincent/command-t'
+Plugin 'ervandew/supertab'
+Plugin 'easymotion/vim-easymotion'
+Plugin 'junegunn/vim-easy-align'
+Plugin 'junegunn/fzf'
+Plugin 'junegunn/fzf.vim'
+Plugin 'tpope/vim-fugitive'
 
 call vundle#end()
 
@@ -64,7 +71,6 @@ set title               " show filename in titlebar
 set cursorline          " highlights the current line
 set winaltkeys=no       " turns off the Alt key bindings to the gui menu
 set laststatus=2        " the statusline is now always shown
-colorscheme valloric    " sets the colorscheme
 
 " When you type the first tab, it will complete as much as possible, the second
 " tab hit will provide a list, the third and subsequent tabs will cycle through
@@ -84,6 +90,11 @@ set switchbuf=useopen,usetab
 " Sets a font for the GUI on Windows
 if has("gui_win32")
   set guifont=Consolas\ For\ Powerline:h11
+end
+
+" Sets a font for the GUI on Mac OS X
+if has("gui_macvim")
+  set guifont=Menlo\ for\ Powerline
 end
 
 " ====================  Editor settings  ==================== 
@@ -122,6 +133,7 @@ set textwidth=120               " enforces a specified line-length and auto inse
 set colorcolumn=+1              " this makes the color after the textwidth column highlighted
 set formatoptions=tcroqnj       " options for formatting text; see :h formatoptions
 set number                      " show line numbers
+set nowrap                      " disable wrapping by default
 
 " toggles vim's paste mode; when we want to paste something into vim from a
 " different application, turning on paste mode prevents the insertion of extra
@@ -214,6 +226,13 @@ inoremap <C-U> <C-G>u<C-U>
 if &t_Co > 2 || has("gui_running")
     syntax on
     set t_Co=256
+
+    " Enable in case of using TextMate molokai theme
+    " let g:molokai_original = 1
+    " let g:rehash256 = 1
+    " colorscheme molokai
+
+    colorscheme gruvbox
 endif
 
 " When editing a file, always jump to the last known cursor position.
@@ -239,6 +258,9 @@ noremap <c-h> <c-w>h
 vnoremap < <gv
 vnoremap > >gv
 
+" Mappings for cyrillic letters
+set langmap=йq,цw,уe,кr,еt,нy,гu,шi,щo,зp,х[,ъ],фa,ыs,вd,аf,пg,рh,оj,лk,дl,ж\\;,э',яz,чx,сc,мv,иb,тn,ьm,ю.,ё',ЙQ,ЦW,УE,КR,ЕT,НY,ГU,ШI,ЩO,ЗP,Х\{,Ъ\},ФA,ЫS,ВD,АF,ПG,РH,ОJ,ЛK,ДL,Ж\:,Э\",ЯZ,ЧX,СC,МV,ИB,ТN,ЬM,Б\<,Ю\>
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -257,7 +279,7 @@ let Tlist_winWidth=50
 map <F7> :TlistToggle<CR>
 
 " Building ctags for current directory
-map <F8> :!/usr/bin/ctags -R --c++-kinds=+p --fileds=+iaS --extra=+q .<CR>
+map <F8> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 
 " Open the definition in a new tab
 map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
@@ -305,6 +327,8 @@ endfunction
 
 " ====================  ListToggle  ====================
 let g:lt_height = 15
+let g:lt_location_list_toggle_map = '<leader>l'
+let g:lt_quickfix_list_toggle_map = '<leader>q'
 
 
 " ====================  fswitch  ====================
@@ -348,13 +372,6 @@ nnoremap <F6> :TagbarToggle<cr><c-w>=
 
 " ====================  Ack  ====================
 
-" Open a new tab and search for something
-nmap <Leader>a :tab split<CR>:Ack ""<Left>
-
-" Immediately search for the word under the cursor in a new tab
-nmap <Leader>A :tab split<CR>:Ack <C-r><C-w><CR>
-
-" Experimental, TODO: remove if there would be a problems
 if executable('ag')
   let g:ackprg = "ag --nocolor --nogroup --column"
 elseif executable('ack-grep')
@@ -366,13 +383,8 @@ endif
 
 " ====================  Airline  ====================
 let g:airline_theme = 'tomorrow'
-
-
-" ====================  Easymotion  ====================
-let g:EasyMotion_smartcase = 1
-map <Leader> <Plug>(easymotion-prefix)
-map <Leader>/ <Plug>(easymotion-sn)
-omap <Leader>/ <Plug>(easymotion-tn)
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
 
 
 " ====================  YouCompleteMe  ====================
@@ -390,3 +402,11 @@ nnoremap <leader>y :YcmForceCompileAndDiagnostics<cr>
 nnoremap <leader>g :YcmCompleter GoTo<CR>
 " nnoremap <leader>pd :YcmCompleter GoToDefinition<CR>
 " nnoremap <leader>pc :YcmCompleter GoToDeclaration<CR>
+
+" ====================  Vim-cpp-enhanced-highlight  ====================
+let g:cpp_class_scope_highlight = 1
+
+" ====================  tpope/vim-fugitive  ====================
+
+" Remove temporary created buffers
+autocmd BufReadPost fugitive://* set bufhidden=delete
