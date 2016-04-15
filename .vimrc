@@ -21,9 +21,12 @@ Plugin 'VundleVim/Vundle.vim' " Let Vundle manage Vundle
 " Colorschemes
 Plugin 'tomasr/molokai'
 Plugin 'morhetz/gruvbox'
+Plugin 'flazz/vim-colorschemes'
+Plugin 'junegunn/seoul256.vim'
 
 " Appearance, code look and indentations [auxiliary plugins]
-Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'octol/vim-cpp-enhanced-highlight'
 Plugin 'tpope/vim-markdown'
 Plugin 'tpope/vim-git'
@@ -69,7 +72,7 @@ set noshowmode          " don't show how mode in status bar, we already have air
 set showcmd             " show typed command in status bar
 set ruler               " show cursor position in status bar
 set title               " show filename in titlebar
-set cursorline          " highlights the current line
+" set cursorline          " highlights the current line
 set winaltkeys=no       " turns off the Alt key bindings to the gui menu
 set laststatus=2        " the statusline is now always shown
 
@@ -91,11 +94,11 @@ set switchbuf=useopen,usetab
 " Sets a font for the GUI on Windows
 if has("gui_win32")
   set guifont=Consolas\ For\ Powerline:h11
-end
-
-" Sets a font for the GUI on Mac OS X
-if has("gui_macvim")
+elseif has("gui_macvim")
   set guifont=Menlo\ for\ Powerline
+else
+  " set guifont=Source\ Code\ Pro\ for\ Powerline\ 9
+  " set guifont=Ubuntu\ Mono\ derivative\ Powerline
 end
 
 " ====================  Editor settings  ==================== 
@@ -135,6 +138,10 @@ set colorcolumn=+1              " this makes the color after the textwidth colum
 set formatoptions=tcroqnj       " options for formatting text; see :h formatoptions
 set number                      " show line numbers
 set nowrap                      " disable wrapping by default
+
+set ttyfast                     " Attempt to optimize vim on terminals
+set ttyscroll=3                 " Attempt to optimize vim on terminals
+set lazyredraw                  " Attempt to optimize vim on terminals
 
 " toggles vim's paste mode; when we want to paste something into vim from a
 " different application, turning on paste mode prevents the insertion of extra
@@ -407,10 +414,16 @@ nnoremap <leader>g :YcmCompleter GoTo<CR>
 " nnoremap <leader>pd :YcmCompleter GoToDefinition<CR>
 " nnoremap <leader>pc :YcmCompleter GoToDeclaration<CR>
 
+
 " ====================  Vim-cpp-enhanced-highlight  ====================
-let g:cpp_class_scope_highlight = 1
+" let g:cpp_class_scope_highlight = 1
+let c_no_curly_error=1
+
 
 " ====================  tpope/vim-fugitive  ====================
 
 " Remove temporary created buffers
 autocmd BufReadPost fugitive://* set bufhidden=delete
+
+let g:seoul256_background = 233
+colo seoul256
