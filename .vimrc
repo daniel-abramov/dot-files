@@ -20,8 +20,6 @@ Plugin 'VundleVim/Vundle.vim' " Let Vundle manage Vundle
 
 " Colorschemes
 Plugin 'tomasr/molokai'
-Plugin 'morhetz/gruvbox'
-Plugin 'flazz/vim-colorschemes'
 Plugin 'junegunn/seoul256.vim'
 
 " Appearance, code look and indentations [auxiliary plugins]
@@ -34,6 +32,8 @@ Plugin 'Valloric/python-indent'
 Plugin 'vim-scripts/matchit.zip'
 Plugin 'vim-scripts/python_match.vim'
 Plugin 'python.vim'
+Plugin 'rust-lang/rust.vim'
+Plugin 'cespare/vim-toml'
 
 Plugin 'Valloric/ListToggle'
 Plugin 'danro/rename.vim'
@@ -97,8 +97,7 @@ if has("gui_win32")
 elseif has("gui_macvim")
   set guifont=Menlo\ for\ Powerline
 else
-  " set guifont=Source\ Code\ Pro\ for\ Powerline\ 9
-  " set guifont=Ubuntu\ Mono\ derivative\ Powerline
+  set guifont=Monaco\ for\ Powerline\ 8
 end
 
 " ====================  Editor settings  ==================== 
@@ -236,11 +235,9 @@ if &t_Co > 2 || has("gui_running")
     set t_Co=256
 
     " Enable in case of using TextMate molokai theme
-    " let g:molokai_original = 1
-    " let g:rehash256 = 1
-    " colorscheme molokai
-
-    colorscheme gruvbox
+    let g:molokai_original = 1
+    let g:rehash256 = 1
+    colorscheme molokai
 endif
 
 " When editing a file, always jump to the last known cursor position.
@@ -427,3 +424,7 @@ autocmd BufReadPost fugitive://* set bufhidden=delete
 
 let g:seoul256_background = 233
 colo seoul256
+
+let g:netrw_liststyle=3
+
+set directory=$HOME/.vim/tmp
