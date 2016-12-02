@@ -428,3 +428,4 @@ colo seoul256
 let g:netrw_liststyle=3
 
 set directory=$HOME/.vim/tmp
+" temp
