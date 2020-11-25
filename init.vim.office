@@ -84,6 +84,10 @@ function! s:check_back_space() abort
     let col = col('.') - 1
     return !col || getline('.')[col - 1]  =~ '\s'
 endfunction
+
+" reload the file once changed from an external program, see https://github.com/neovim/neovim/issues/1936
+set autoread
+au FocusGained * :checktime
 " EXPERIMENTAL --------------------------------------------------
 
 nnoremap <c-j> <c-w>j
