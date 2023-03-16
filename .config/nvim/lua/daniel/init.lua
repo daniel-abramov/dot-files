@@ -1,6 +1,5 @@
 require("daniel.options")
 require("daniel.keymaps")
-require("daniel.plugins")
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`

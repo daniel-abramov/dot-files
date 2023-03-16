@@ -33,9 +33,6 @@ vim.o.scrolloff = 8
 -- Turn off word wrap.
 vim.o.wrap = false
 
--- Set tabstop to 4 spaces.
-vim.o.tabstop = 4
-
 -- Set 24-bit colors on supported terminals.
 vim.o.termguicolors = true
 
