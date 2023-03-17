@@ -1,12 +1,12 @@
 -- Colorsheme set up.
 require('rose-pine').setup({
-	--- @usage 'main' | 'moon'
-	dark_variant = 'main',
-	dim_nc_background = true,
-	disable_italics = true,
+    --- @usage 'main' | 'moon'
+    dark_variant = 'main',
+    dim_nc_background = true,
+    disable_italics = true,
 
     highlight_groups = {
-        MatchParen = { fg = 'love', bg = 'base' },
+	MatchParen = { fg = 'love', bg = 'base' },
     }
 })
 
