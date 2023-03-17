@@ -11,26 +11,34 @@ require('packer').startup(function(use)
   -- Package manager
   use 'wbthomason/packer.nvim'
 
-  -- LSP Configuration & Plugins
+  -- Complete configuration of the LSP along with completion engine.
   use {
-    'neovim/nvim-lspconfig',
+    'VonHeikemen/lsp-zero.nvim',
+    branch = 'v1.x',
     requires = {
-      -- Automatically install LSPs to stdpath for neovim
-      'williamboman/mason.nvim',
-      'williamboman/mason-lspconfig.nvim',
+      -- LSP Support
+      {'neovim/nvim-lspconfig'},
+      {'williamboman/mason.nvim'},
+      {'williamboman/mason-lspconfig.nvim'},
 
-      -- Useful status updates for LSP
-      'j-hui/fidget.nvim',
+      -- Autocompletion
+      {'hrsh7th/nvim-cmp'},
+      {'hrsh7th/cmp-buffer'},
+      {'hrsh7th/cmp-path'},
+      {'saadparwaiz1/cmp_luasnip'},
+      {'hrsh7th/cmp-nvim-lsp'},
+      {'hrsh7th/cmp-nvim-lua'},
 
-      -- Additional lua configuration, makes nvim stuff amazing
-      'folke/neodev.nvim',
-    },
-  }
+      -- Snippets
+      {'L3MON4D3/LuaSnip'},
+      {'rafamadriz/friendly-snippets'},
 
-  -- Autocompletion
-  use {
-    'hrsh7th/nvim-cmp',
-    requires = { 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip' },
+      -- Status for the LSP loading
+      {'j-hui/fidget.nvim'},
+
+      -- Additional lua configuration for Lua development!
+      {'folke/neodev.nvim'},
+    }
   }
 
   -- Highlight, edit, and navigate code
@@ -66,9 +74,12 @@ require('packer').startup(function(use)
   use 'tpope/vim-fugitive'
   use 'tpope/vim-rhubarb'
 
+  -- Look plugins (themes etc)
   use 'rose-pine/neovim' -- Rose Pine colorscheme
   use 'sainnhe/everforest' -- Everforest colorscheme
   use 'nvim-lualine/lualine.nvim' -- Fancier statusline
+
+  -- Other plugins
   use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
   use 'tpope/vim-sleuth' -- Detect tabstop and shiftwidth automatically
 
@@ -119,6 +130,7 @@ vim.api.nvim_create_autocmd('BufWritePost', {
   pattern = vim.fn.expand '$MYVIMRC',
 })
 
+-- Load basic configuration from the `lua` directory.
 require("daniel")
 
 -- The line beneath this is called `modeline`. See `:help modeline`
