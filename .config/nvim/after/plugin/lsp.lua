@@ -78,7 +78,7 @@ local servers = {
 require('neodev').setup()
 
 -- Set completeopt to have a better completion experience
-vim.o.completeopt = 'menuone,preview,noinsert'
+vim.o.completeopt = 'menuone,preview,noinsert,noselect'
 
 -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
 local capabilities = vim.lsp.protocol.make_client_capabilities()
