@@ -74,9 +74,12 @@ require('packer').startup(function(use)
   use 'tpope/vim-fugitive'
   use 'tpope/vim-rhubarb'
 
-  -- Look plugins (themes etc)
+  -- Colorschemes
   use 'rose-pine/neovim' -- Rose Pine colorscheme
   use 'sainnhe/everforest' -- Everforest colorscheme
+  use 'eddyekofo94/gruvbox-flat.nvim' -- Gruvbox Flat colorscheme
+
+  -- Status line at the bottom
   use 'nvim-lualine/lualine.nvim' -- Fancier statusline
 
   -- Other plugins
