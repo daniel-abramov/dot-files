@@ -34,7 +34,7 @@ lsp.on_attach(function(client, bufnr)
   if client.server_capabilities.documentHighlightProvider then
     local highlight_name = vim.fn.printf("lsp_document_highlight_%d", bufnr)
     vim.api.nvim_create_augroup(highlight_name, {})
-    vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+    vim.api.nvim_create_autocmd({ "CursorHold" }, {
       group = highlight_name,
       buffer = bufnr,
       callback = function() vim.lsp.buf.document_highlight() end,
@@ -55,7 +55,7 @@ end)
 lsp.setup_nvim_cmp({
   preselect = 'none',
   completion = {
-    completeopt = 'menu,menuone,noinsert,noselect',
+    completeopt = 'menu,menuone',
   },
   sources = {
     { name = 'nvim_lsp' },
@@ -67,9 +67,11 @@ lsp.setup_nvim_cmp({
 
 lsp.setup()
 
+
 -- Add virtual text when displaying errors and stuff
 vim.diagnostic.config({
   virtual_text = true,
+  signs = false,
 })
 
 -- Format go on save
