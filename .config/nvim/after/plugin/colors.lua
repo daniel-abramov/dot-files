@@ -10,5 +10,17 @@ require('rose-pine').setup({
     }
 })
 
--- Set colorscheme
-vim.cmd "colorscheme rose-pine"
+
+-- Main colorscheme: gruvbox
+vim.g.gruvbox_italic_keywords = false
+vim.g.gruvbox_flat_style = "hard"
+vim.cmd "colorscheme gruvbox-flat"
+
+-- Secondary colorscheme: rose-pine
+-- vim.cmd "colorscheme rose-pine"
+
+-- Experimental colorscheme: everforest
+-- vim.cmd [[
+--     let g:everforest_background = 'hard'
+--     colorscheme everforest
+-- ]]
