@@ -59,9 +59,9 @@ lsp.setup_nvim_cmp({
   },
   sources = {
     { name = 'nvim_lsp' },
-    { name = 'buffer', keyword_length = 3 },
+    { name = 'buffer',  keyword_length = 3 },
     { name = 'luasnip', keyword_length = 2 },
-    { name = 'path', keyword_length = 2 },
+    { name = 'path',    keyword_length = 2 },
   },
 })
 
@@ -81,5 +81,5 @@ vim.api.nvim_create_autocmd('BufWritePre', {
     vim.lsp.buf.format()
   end,
   group = go_auto_format,
-  pattern = '*.go',
+  pattern = '*.go,*.rs',
 })
