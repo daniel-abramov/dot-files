@@ -1,6 +1,9 @@
 -- [[ Setting options ]]
 -- See `:help vim.o`
 
+-- By default use the system clipboard
+vim.o.clipboard = 'unnamedplus'
+
 -- Set highlight on search
 vim.o.hlsearch = false
 

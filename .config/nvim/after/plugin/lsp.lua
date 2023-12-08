@@ -75,11 +75,11 @@ vim.diagnostic.config({
 })
 
 -- Format go on save
-local go_auto_format = vim.api.nvim_create_augroup('GoAutoFormat', { clear = true })
+local buffer_auto_format = vim.api.nvim_create_augroup('BuferAutoFormat', { clear = true })
 vim.api.nvim_create_autocmd('BufWritePre', {
   callback = function()
     vim.lsp.buf.format()
   end,
-  group = go_auto_format,
+  group = buffer_auto_format,
   pattern = '*.go,*.rs',
 })
